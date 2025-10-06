@@ -15,7 +15,7 @@ services:
       - ./certs:/etc/nginx/certs:ro
     depends_on:
       - influxdb2
-      - grafana
+      - grafana2
     networks:
       metrics-net:
         aliases:
@@ -36,9 +36,9 @@ services:
     networks:
       - metrics-net
 
-  grafana:
+  grafana2:
     image: grafana/grafana:latest
-    container_name: grafana
+    container_name: grafana2
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
