@@ -14,16 +14,16 @@ services:
     volumes:
       - ./certs:/etc/nginx/certs:ro
     depends_on:
-      - influxdb
+      - influxdb2
       - grafana
     networks:
       metrics-net:
         aliases:
           - nginx-mtls
 
-  influxdb:
+  influxdb2:
     image: influxdb:2.7
-    container_name: influxdb
+    container_name: influxdb2
     environment:
       - DOCKER_INFLUXDB_INIT_MODE=${DOCKER_INFLUXDB_INIT_MODE}
       - DOCKER_INFLUXDB_INIT_USERNAME=${DOCKER_INFLUXDB_INIT_USERNAME}
@@ -47,7 +47,7 @@ services:
       - grafana-data:/var/lib/grafana
       - ./grafana/datasources:/etc/grafana/provisioning/datasources
     depends_on:
-      - influxdb
+      - influxdb2
     networks:
       - metrics-net
 
@@ -63,7 +63,7 @@ services:
       - INFLUX_BUCKET=${DOCKER_INFLUXDB_INIT_BUCKET}
     depends_on:
       - nginx
-      - influxdb
+      - influxdb2
     networks:
       - metrics-net
 
