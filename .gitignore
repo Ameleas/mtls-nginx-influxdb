@@ -1,0 +1,10 @@
+.env
+*.pem
+*.key
+*.srl
+docker-compose.override.yml
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
